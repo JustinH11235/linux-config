@@ -1,7 +1,7 @@
 # linux-config
 
-### Download a script:
-`wget https://raw.githubusercontent.com/JustinH11235/linux-config/master/scripts/_`
+### Install a script (this can break your system):
+`wget -O - https://raw.githubusercontent.com/JustinH11235/linux-config/master/scripts/_ | sudo bash`
 
 ### Download a dotfile:
 `wget https://raw.githubusercontent.com/JustinH11235/linux-config/master/dotfiles/_`
