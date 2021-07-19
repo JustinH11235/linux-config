@@ -7,7 +7,7 @@ echo "updating and upgrading apt =========="
 apt update && apt upgrade
 
 echo "apt installing programs =========="
-apt install wget curl neofetch htop vim inxi git xclip haskell-platform
+apt install wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform
 
 echo "making deb-apps/ directory in Documents/"
 sudo -u justin mkdir -p /home/justin/Documents/deb-apps/
