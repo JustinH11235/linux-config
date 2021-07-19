@@ -1,5 +1,7 @@
 # Should be run as sudo ./ubuntu.sh (be careful!)
-# all commands that should be run as normal user will start with sudo -u justin [command]
+# all commands that should be run as normal user will be inside the USER SECTION block
+
+# ROOT SECTION ==========
 echo "removing snapd"
 apt remove snapd
 
@@ -9,13 +11,21 @@ apt update && apt upgrade
 echo "apt installing programs =========="
 apt install wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform
 
+# USER SECTION ==========
+# All commands that should be run as user
+sudo -u justin -i <<'EOF'
 echo "making deb-apps/ directory in Documents/"
-sudo -u justin mkdir -p /home/justin/Documents/deb-apps/
+mkdir -p /home/justin/Documents/deb-apps/
 
 echo "setting global git config"
-sudo -u justin git config --global user.email "justin.h.hinckley@gmail.com"
-sudo -u justin git config --global user.name "Justin Hinckley"
+git config --global user.email "justin.h.hinckley@gmail.com"
+git config --global user.name "Justin Hinckley"
 
+echo "generating Github ssh keys"
+ssh-keygen -t ed25519 -C "justin.h.hinckley@gmail.com" -f /home/justin/.ssh/id_ed25519_github -P ""
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519_github
+EOF
 
 # Manual Installs ==========
 
