@@ -1,20 +1,21 @@
 # ROOT SECTION ==========
 echo "removing snapd =========="
-sudo apt remove snapd
+sudo apt remove -y snapd
 
 echo "updating and upgrading apt =========="
-sudo apt update && sudo apt upgrade
+sudo apt update
+sudo apt upgrade -y
 
 echo "apt installing programs =========="
-sudo apt install software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox
+sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox
 
 echo "adding Microsoft GPG key and installing Visual Studio Code with apt =========="
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt install code
+sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt install -y code
 
 echo "apt autoremoving programs =========="
-sudo apt autoremove
+sudo apt autoremove -y
 
 # USER SECTION ==========
 echo "finding latest nvm release =========="
