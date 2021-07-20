@@ -57,7 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 parse_git_branch() {
-	git branch 2> /dev/null | grep "^* " | sed s/"* \(.*\)"/" (\1)"/
+	git branch 2> /dev/null | grep "^* " | sed -E 's/\* (.*)/ (\1)/'
 }
 
 if [ "$color_prompt" = yes ]; then
