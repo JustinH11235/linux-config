@@ -6,7 +6,12 @@ echo "updating and upgrading apt =========="
 sudo apt update && sudo apt upgrade
 
 echo "apt installing programs =========="
-sudo apt install wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox
+sudo apt install software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox
+
+echo "adding Microsoft GPG key and installing Visual Studio Code with apt =========="
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt install code
 
 echo "apt autoremoving programs =========="
 sudo apt autoremove
@@ -27,7 +32,7 @@ cd /opt/jetbrains-toolbox/
 ./jetbrains-toolbox
 
 echo "making deb-apps/ directory in Documents/ =========="
-mkdir -p /home/justin/Documents/deb-apps/
+mkdir -p ~/Documents/deb-apps/
 
 echo "setting global git config =========="
 git config --global user.email "justin.h.hinckley@gmail.com"
@@ -43,10 +48,4 @@ cat ~/.ssh/id_ed25519_github.pub
 echo ""
 
 # Manual Installs ==========
-
-# VSCode
-# https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
-# mv ~/Downloads/code_* ~/Documents/deb-apps/
-# cd ~/Documents/deb-apps/
-# sudo apt install ./code_*
 
