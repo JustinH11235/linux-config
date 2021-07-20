@@ -1,10 +1,10 @@
 # linux-config
 
 ### Install a script (this can break your system):
-`wget -O - --no-http-keep-alive --no-cache https://raw.githubusercontent.com/JustinH11235/linux-config/master/scripts/_ | bash`
+`wget -O - --no-check-certificate --no-cache --no-cookies https://raw.githubusercontent.com/JustinH11235/linux-config/master/scripts/_ | bash`
 
 ### Download a dotfile:
-`wget --no-http-keep-alive --no-cache https://raw.githubusercontent.com/JustinH11235/linux-config/master/dotfiles/_`
+`wget --no-check-certificate --no-cache --no-cookies https://raw.githubusercontent.com/JustinH11235/linux-config/master/dotfiles/_`
 
 ## **scripts:**
 * ubuntu<span>.</span>sh
