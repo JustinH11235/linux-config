@@ -3,7 +3,7 @@ echo "removing snapd =========="
 sudo apt remove snapd
 
 echo "updating and upgrading apt =========="
-sudo apt update && apt upgrade
+sudo apt update && sudo apt upgrade
 
 echo "apt installing programs =========="
 sudo apt install wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox
