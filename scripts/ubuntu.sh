@@ -1,19 +1,25 @@
-# Should be run as sudo ./ubuntu.sh (be careful!)
-# all commands that should be run as normal user will be inside the USER SECTION block
-
 # ROOT SECTION ==========
-echo "removing snapd"
-apt remove snapd
+echo "removing snapd =========="
+sudo apt remove snapd
 
 echo "updating and upgrading apt =========="
-apt update && apt upgrade
+sudo apt update && apt upgrade
 
 echo "apt installing programs =========="
-apt install wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform
+sudo apt install wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox
+
+echo "apt autoremoving programs =========="
+sudo apt autoremove
 
 # USER SECTION ==========
-# All commands that should be run as user
-sudo -u justin -i <<'EOF'
+echo "finding latest nvm release =========="
+NVM_LATEST_RELEASE=$(curl https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep "^ *\"tag_name\": " | sed -E 's/^ *"tag_name": "([^"]+)".*/\1/')
+echo "installing latest nvm release: $NVM_LATEST_RELEASE =========="
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_LATEST_RELEASE/install.sh | bash
+
+echo "installing latest version of JetBrains Toolbox =========="
+curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
+
 echo "making deb-apps/ directory in Documents/"
 mkdir -p /home/justin/Documents/deb-apps/
 
@@ -22,10 +28,13 @@ git config --global user.email "justin.h.hinckley@gmail.com"
 git config --global user.name "Justin Hinckley"
 
 echo "generating Github ssh keys"
-ssh-keygen -t ed25519 -C "justin.h.hinckley@gmail.com" -f /home/justin/.ssh/id_ed25519_github -P ""
+ssh-keygen -t ed25519 -C "justin.h.hinckley@gmail.com" -f ~/.ssh/id_ed25519_github -P ""
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_github
-EOF
+echo ""
+echo "copy the below generated public key to put in GitHub settings: =========="
+cat ~/.ssh/id_ed25519_github.pub
+echo ""
 
 # Manual Installs ==========
 
