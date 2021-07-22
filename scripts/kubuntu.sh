@@ -1,10 +1,13 @@
 # ROOT SECTION ==========
+echo "removing snapd =========="
+sudo apt remove -y snapd
+
 echo "updating and upgrading apt =========="
 sudo apt update
 sudo apt upgrade -y
 
 echo "apt installing programs =========="
-sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox
+sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox ksshaskpass
 
 echo "adding Microsoft GPG key and installing Visual Studio Code with apt =========="
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -38,6 +41,8 @@ git config --global user.name "Justin Hinckley"
 
 echo "generating Github ssh keys =========="
 ssh-keygen -t ed25519 -C "justin.h.hinckley@gmail.com" -f ~/.ssh/id_ed25519_github -P ""
+echo "creating autoscript file to add GitHub ssh key to agent - https://wiki.archlinux.org/title/KDE_Wallet =========="
+echo "ssh-add -q ~/.ssh/id_ed25519_github < /dev/null" > ~/.config/autostart-scripts/ssh-add.sh
 echo "adding GitHub ssh key to agent manually first time =========="
 ssh-add ~/.ssh/id_ed25519_github
 echo ""
