@@ -50,5 +50,14 @@ echo "copy the below generated public key to put in GitHub settings: =========="
 cat ~/.ssh/id_ed25519_github.pub
 echo ""
 
+echo "configuring vim =========="
+# https://github.com/tomasr/molokai
+echo "downloading molokai theme =========="
+mkdir -p ~/.vim/colors/
+wget https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+mv molokai.vim ~/.vim/colors/
+
+
+
 # Manual Installs ==========
 
