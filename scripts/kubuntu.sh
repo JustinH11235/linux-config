@@ -51,12 +51,20 @@ cat ~/.ssh/id_ed25519_github.pub
 echo ""
 
 echo "configuring vim =========="
+
 # https://github.com/tomasr/molokai
 echo "downloading molokai theme =========="
 mkdir -p ~/.vim/colors/
-wget https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
-mv molokai.vim ~/.vim/colors/
+cd ~/.vim/colors/
+wget -O molokai.vim https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
 
+echo "downloading custom .vimrc"
+cd ~/
+wget -O .vimrc https://raw.githubusercontent.com/JustinH11235/linux-config/master/dotfiles/.vimrc
+
+echo "downloading custom .bashrc"
+cd ~/
+wget -O .bashrc https://raw.githubusercontent.com/JustinH11235/linux-config/master/dotfiles/.bashrc
 
 
 # Manual Installs ==========
