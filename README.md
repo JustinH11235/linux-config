@@ -9,10 +9,13 @@
 ## **scripts:**
 * ubuntu<span>.</span>sh
     * Post-installation script for Ubuntu-based distributions (Ubuntu, Kubuntu, Linux Mint, etc.)
+* kubuntu<span>.</span>sh
+    * Post-installation script for Kubuntu. Most overlaps with ubuntu<span>.</span>sh, apart from a few differences:
+        * Removes snapd
+        * Sets up autostart script that adds GitHub ssh key to ssh-agent (not needed for other distributions that use GNOME keyring ssh agent or similar programs by default)
 
 ## **dotfiles:**
 * .bashrc
-    * My current bash configuration
     * Custom aliases:
         * v - alias for vim
         * .. - moves you up one directory
@@ -22,3 +25,7 @@
     * Runs `neofetch` when shell starts
     * `PS1` prompt appends the current `git` branch in red
     * Default [nvm](https://github.com/nvm-sh/nvm#readme) configuration
+* .vimrc
+    * Automatically installs [vim-plug](https://github.com/junegunn/vim-plug) and a list of plugings
+    * Automatically installs the [molokai](https://github.com/tomasr/molokai) theme
+    * Includes custom keybinds, relative/absolute line numbering, airline status bar, and other vim customizations

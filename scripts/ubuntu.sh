@@ -4,7 +4,7 @@ sudo apt update
 sudo apt upgrade -y
 
 echo "apt installing programs =========="
-sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox
+sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox ksshaskpass
 
 echo "adding Microsoft GPG key and installing Visual Studio Code with apt =========="
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -44,6 +44,23 @@ echo ""
 echo "copy the below generated public key to put in GitHub settings: =========="
 cat ~/.ssh/id_ed25519_github.pub
 echo ""
+
+echo "configuring vim =========="
+
+# https://github.com/tomasr/molokai
+echo "downloading molokai theme =========="
+mkdir -p ~/.vim/colors/
+cd ~/.vim/colors/
+wget -O molokai.vim https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+
+echo "downloading custom .vimrc"
+cd ~/
+wget -O .vimrc https://raw.githubusercontent.com/JustinH11235/linux-config/master/dotfiles/.vimrc
+
+echo "downloading custom .bashrc"
+cd ~/
+wget -O .bashrc https://raw.githubusercontent.com/JustinH11235/linux-config/master/dotfiles/.bashrc
+
 
 # Manual Installs ==========
 
