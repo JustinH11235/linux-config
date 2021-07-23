@@ -4,7 +4,7 @@ sudo apt update
 sudo apt upgrade -y
 
 echo "apt installing programs =========="
-sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox ksshaskpass
+sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox ksshaskpass jq
 
 echo "adding Microsoft GPG key and installing Visual Studio Code with apt =========="
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -16,7 +16,7 @@ sudo apt autoremove -y
 
 # USER SECTION ==========
 echo "finding latest nvm release =========="
-NVM_LATEST_RELEASE=$(curl https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep "^ *\"tag_name\": " | sed -E 's/^ *"tag_name": "([^"]+)".*/\1/')
+NVM_LATEST_RELEASE=$(curl https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq '.tag_name' --raw-output)
 echo "installing latest nvm release: $NVM_LATEST_RELEASE =========="
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_LATEST_RELEASE/install.sh | bash
 source ~/.bashrc
@@ -60,6 +60,8 @@ wget -O .vimrc https://raw.githubusercontent.com/JustinH11235/linux-config/maste
 echo "downloading custom .bashrc"
 cd ~/
 wget -O .bashrc https://raw.githubusercontent.com/JustinH11235/linux-config/master/dotfiles/.bashrc
+
+source ~/.bashrc
 
 
 # Manual Installs ==========
