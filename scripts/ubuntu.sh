@@ -19,8 +19,11 @@ echo "finding latest nvm release =========="
 NVM_LATEST_RELEASE=$(curl https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq '.tag_name' --raw-output)
 echo "installing latest nvm release: $NVM_LATEST_RELEASE =========="
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_LATEST_RELEASE/install.sh | bash
-source ~/.bashrc
 echo "installing the latest version of node =========="
+# manually load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 nvm install node
 
 echo "downloading and extracting latest version of JetBrains Toolbox =========="
