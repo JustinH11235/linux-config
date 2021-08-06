@@ -4,7 +4,7 @@ sudo apt update
 sudo apt upgrade -y
 
 echo "apt installing programs =========="
-sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim vim-gtk inxi git xclip haskell-platform virtualbox ksshaskpass jq
+sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim-gtk inxi git xclip haskell-platform virtualbox ksshaskpass jq php-cli python3-venv net-tools ncat sqlite3
 
 echo "adding Microsoft GPG key and installing Visual Studio Code with apt =========="
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -16,6 +16,22 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update
 sudo apt install gh
+
+# https://docs.docker.com/engine/install/ubuntu/
+echo "adding Docker key, installing docker with apt, and setting up docker group"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+# Note: The lsb_release -cs sub-command below returns the name of your Ubuntu distribution, such as xenial. Sometimes,
+# in a distribution like Linux Mint, you might need to change $(lsb_release -cs) to your parent Ubuntu distribution.
+# For example, if you are using Linux Mint Tessa, you could use bionic.
+# Docker does not offer any guarantees on untested and unsupported Ubuntu distributions.
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+# https://docs.docker.com/engine/install/linux-postinstall/
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
 echo "apt autoremoving programs =========="
 sudo apt autoremove -y
@@ -49,10 +65,11 @@ echo "generating Github ssh keys =========="
 ssh-keygen -t ed25519 -C "justin.h.hinckley@gmail.com" -f ~/.ssh/id_ed25519_github -P ""
 echo "adding GitHub ssh key to agent manually first time =========="
 ssh-add ~/.ssh/id_ed25519_github
-echo ""
+echo
 echo "copy the below generated public key to put in GitHub settings: =========="
 cat ~/.ssh/id_ed25519_github.pub
-echo ""
+echo
+read -p "Press ENTER when done: "
 
 echo "configuring vim =========="
 
@@ -75,3 +92,10 @@ source ~/.bashrc
 
 # Manual Installs ==========
 
+# ngrok https://ngrok.com/download
+echo
+echo "TODO: Install ngrok"
+echo "1. Go here: https://ngrok.com/download and click Download for Linux"
+echo "2. Unzip download: unzip ~/Downloads/ngrok-stable-linux-amd64.zip"
+echo "3. Move to /usr/local/bin: sudo mv ~/Downloads/ngrok /usr/local/bin"
+read -p "Press ENTER when done: "
