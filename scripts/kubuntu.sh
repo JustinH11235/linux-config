@@ -102,5 +102,5 @@ echo
 echo "TODO: Install ngrok"
 echo "1. Go here: https://ngrok.com/download and click Download for Linux"
 echo "2. Unzip download: unzip ~/Downloads/ngrok-stable-linux-amd64.zip"
-echo "3. Move to /usr/local/bin: sudo mv ~/Downloads/ngrok /usr/local/bin"
+echo "3. Move to /usr/local/bin: sudo mv ./Downloads/ngrok /usr/local/bin"
 read -p "Press ENTER when done: "
