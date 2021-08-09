@@ -7,7 +7,7 @@ sudo apt update
 sudo apt upgrade -y
 
 echo "apt installing programs =========="
-sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim-gtk inxi git xclip haskell-platform virtualbox ksshaskpass jq php-cli python3-venv net-tools ncat sqlite3 bpython
+sudo apt install -y software-properties-common apt-transport-https wget curl neofetch htop vim-gtk inxi git xclip haskell-platform virtualbox ksshaskpass jq php-cli python3-venv python3-pip net-tools ncat dirb nmap hashcat sqlite3 bpython gimp
 
 echo "adding Microsoft GPG key and installing Visual Studio Code with apt =========="
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
